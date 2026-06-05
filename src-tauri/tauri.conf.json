@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "just-a-study-timer",
+  "productName": "JustAStudyApp",
   "version": "0.1.0",
   "identifier": "com.daniel.justastudytimer",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "just-a-study-timer",
+        "title": "JustAStudyApp",
         "width": 800,
         "height": 600
       }
