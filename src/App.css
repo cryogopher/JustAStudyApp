@@ -7,7 +7,7 @@ html, body {
   background-color: #121212; /* Keeps background uniform during state changes */
 }
 
-.app-container {
+.appContainer {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -21,10 +21,11 @@ html, body {
   user-select: none;
 }
 
-/* Base Themes */
+/*base themes */
 .study-theme { background-color: #261F1F; }
 .break-theme { background-color: #141c18; } /* Very soft green shift for breaks */
-/* fonts */
+
+/*fonts*/
 .cousine-regular {
   font-family: "Cousine", monospace;
   font-weight: 400;
@@ -37,14 +38,15 @@ html, body {
 }
 /* */
 
-.main-content {
+.mainContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 10;
 }
 
-.mode-indicator {
+/*does this actually do anything*/
+.modeIndicator {
   font-size: 0.9rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -68,16 +70,16 @@ html, body {
 /*not including options*/
 .controls {
   display: flex;
-  flex-direction: rows;
+  flex-direction: row;
   align-items: center;
   /*margin-right: 100px;*/ 
   /* figure out spacing out the buttaons after*/
-  gap: 10 rem;
+  gap: 0.5rem;
   transition: opacity 0.5s ease, transform 0.5s ease; /* Smoothly transitions opacity and positioning over 0.5 seconds */
   opacity: 1;
 }
 
-.control-btn {
+.controlButton {
   background: none;
   border: none;
   color: white;
@@ -85,40 +87,42 @@ html, body {
   outline: none;
 }
 
-.main-action {
+.mainAction {
   background-color: #ffffff;
   color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
   padding: 0.4rem 1.2rem;
   border-radius: 15%;
   font-weight: 500;
   transition: transform 0.2s, opacity 0.2s;
-  opacity: 0.95;
+  opacity: 0.75;
   
 }
 
-.main-action:hover {
-  transform: scale(1.04);
+.mainAction:hover {
+  transform: scale(1.03);
 }
 
-.reset-icon {
+.resetIcon {
   width: 28px;
   height: 28px;
-  opacity: 0.95;
+  opacity: 0.75;
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
 }
 
-.reset-action:hover .reset-icon {
+.resetAction:hover .resetIcon {
   opacity: 0.85;
   transform: rotate(-45deg); 
 }
 
 
-.reset-action:active .reset-icon {
+.resetAction:active .resetIcon {
   transform: rotate(-405deg) scale(0.95);
   transition: transform 0s; 
 }
 
+/*positioning for the credits and branding*/ 
 .branding {
   position: absolute;
   bottom: 24px;
@@ -150,22 +154,31 @@ html, body {
 
 }
 
-/* Allows you to still see the pause button if you hover over its general area */
+/*fade back in buttons on hover*/
 .controls.faded-out:hover {
-  opacity: 0.2 !important;       /* Ghost hint reveal if you need to find the pause trigger */
+  opacity: 0.2 !important;       
   pointer-events: auto;
 }
 
-/*menu screen*/
-/* --- OVERLAY BACKDROP --- */
+/*menu screen (overlay)*/
+.optionsContainer {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Matches the branding fade-out transition perfectly */
+}
 .options-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4); /* Dim out the background timer subtly */
-  backdrop-filter: blur(20px);         /* Modern glassy blur treatment */
+  background-color: rgba(0, 0, 0, 0.4); /*background dim */
+  backdrop-filter: blur(10px);         /*slight blur*/
   -webkit-backdrop-filter: blur(20px);
   z-index: 100;
   
@@ -187,12 +200,12 @@ html, body {
 
 /*Settings card*/
 .menu-card {
-  background: rgba(25, 25, 25, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  width: 340px;
+  background: #1D1818;
+  width: 50rem;
+  height: 40rem;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 0.75rem;
+  /*box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
   position: relative;
   
   /* Elegant scale spring up when entering view */
@@ -221,7 +234,7 @@ html, body {
   margin-bottom: 1.5rem;
 }
 
-/* Minimalist 'X' Close Button */
+/*add X to close the menu*/
 .close-btn {
   position: absolute;
   top: 1.5rem;
@@ -246,22 +259,99 @@ html, body {
   font-family: -apple-system, sans-serif;
 }
 
-/* Re-verifying Options Action layout styles */
-.options-action {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 0.6rem;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-}
-
 .options-icon {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   color: #ffffff;
   opacity: 0.4;
   transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.options-action:hover { background-color: rgba(255, 255, 255, 0.1); }
-.options-action:hover .options-icon { opacity: 0.85; transform: rotate(45deg); }
-.options-action:active .options-icon { transform: scale(0.9) rotate(45deg); }
+.options-action:hover .options-icon { opacity: 0.85; transform: rotate(35deg); }
+.options-action:active .options-icon { transform: scale(0.9) rotate(35deg); }
+
+/*Setting configuration styles*/
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-row label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.setting-row input {
+  width: 55px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  font-family: "Cousine", monospace; /* Pairs perfectly with your timer layout font */
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.setting-row input:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Clear out default browser up/down arrow spinners for a cleaner look */
+.setting-row input::-webkit-outer-spin-button,
+.setting-row input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* --- MANUAL MODE SWITCH TABS --- */
+.modeIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+    transition: opacity 0.2s ease, transform 0.4s ease;
+
+}
+
+.mode-tab {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  opacity: 0.4; /* Softly dimmed out when inactive */
+  transition: opacity 0.2s ease, transform 0.4s ease;
+}
+
+.mode-tab:hover {
+  opacity: 0.7;
+}
+
+/* Lights up bright white when that mode is actively running */
+.mode-tab.active-tab {
+  opacity: 0.95 ;
+}
+
+.tab-divider {
+  color: #ffffff;
+  opacity: 0.15;
+  font-size: 0.8rem;
+  user-select: none;
+}
