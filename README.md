@@ -1,7 +1,23 @@
-# Tauri + React + Typescript
+Justastudyapp June 2026
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+simple timer to replace using ones on the web for personal use.
+comes with an installer using tauri
+<img width="980" height="722" alt="image" src="https://github.com/user-attachments/assets/b2dc5e7d-65f4-4a3d-a748-911d11e96c65" />
+(June), Figma: https://www.figma.com/site/BOXrJ7rtusOWnA1UwgYutc/Study-App?node-id=0-1&t=UOiVCOAHIpHoaVG0-1
 
-## Recommended IDE Setup
+Tools:
+- React, Tauri
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+Timeline:
+TD:
+- add sound effects, mute/unmute
+- scale ui with window size
+- labels switch to resume/start/pause depending on state
+- better UI
+- Uploadable images
+- light/dar mode
+- changing tab window name
+- Uploadable, selectable fonts
+
+June. 07
+- 
