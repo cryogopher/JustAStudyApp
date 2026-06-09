@@ -64,7 +64,6 @@ html, body {
   margin-bottom: 1.5rem;
   opacity: 0.75;
   transition: opacity 0.5s ease, font-size 0.8s ease, transform 0.5s ease;
-
 }
 
 /*not including options*/
@@ -90,14 +89,13 @@ html, body {
 .mainAction {
   background-color: #ffffff;
   color: #000000;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Cousine';
   font-size: 1rem;
-  padding: 0.4rem 1.2rem;
+  padding: 0.45rem 1.2rem;
   border-radius: 15%;
   font-weight: 500;
   transition: transform 0.2s, opacity 0.2s;
   opacity: 0.75;
-  
 }
 
 .mainAction:hover {
@@ -115,7 +113,6 @@ html, body {
   opacity: 0.85;
   transform: rotate(-45deg); 
 }
-
 
 .resetAction:active .resetIcon {
   transform: rotate(-405deg) scale(0.95);
@@ -151,7 +148,6 @@ html, body {
   opacity: 1;
   /*transform: translateY(-5px);  */
   font-size: 8.5rem;
-
 }
 
 /*fade back in buttons on hover*/
@@ -161,6 +157,8 @@ html, body {
 }
 
 /*menu screen (overlay)*/
+
+/*options button*/
 .optionsContainer {
   position: absolute;
   bottom: 24px;
@@ -169,8 +167,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Matches the branding fade-out transition perfectly */
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
 .options-overlay {
   position: absolute;
   top: 0;
@@ -198,66 +197,6 @@ html, body {
   pointer-events: auto;
 }
 
-/*Settings card*/
-.menu-card {
-  background: #1D1818;
-  width: 50rem;
-  height: 40rem;
-  padding: 2rem;
-  border-radius: 0.75rem;
-  /*box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-  position: relative;
-  
-  /* Elegant scale spring up when entering view */
-  transform: scale(0.92);
-  transition: transform 0.4s cubic-bezier(0.24, 1, 0.32, 1);
-}
-
-.options-overlay.menu-active .menu-card {
-  transform: scale(1);
-}
-
-/* Title Header */
-.menu-card h3 {
-  margin: 0 0 0.5rem 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 500;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-}
-
-.menu-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 1.5rem;
-}
-
-/*add X to close the menu*/
-.close-btn {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 1.5rem;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0.2rem;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: #ffffff;
-}
-
-.placeholder-text {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: -apple-system, sans-serif;
-}
 
 .options-icon {
   width: 30px;
@@ -270,66 +209,20 @@ html, body {
 .options-action:hover .options-icon { opacity: 0.85; transform: rotate(35deg); }
 .options-action:active .options-icon { transform: scale(0.9) rotate(35deg); }
 
-/*Setting configuration styles*/
-.settings-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.setting-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.setting-row label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.02em;
-}
-
-.setting-row input {
-  width: 55px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  color: #ffffff;
-  padding: 0.4rem;
-  font-size: 0.9rem;
-  font-family: "Cousine", monospace; /* Pairs perfectly with your timer layout font */
-  text-align: center;
-  outline: none;
-  transition: border-color 0.2s, background-color 0.2s;
-}
-
-.setting-row input:focus {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Clear out default browser up/down arrow spinners for a cleaner look */
-.setting-row input::-webkit-outer-spin-button,
-.setting-row input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 /* --- MANUAL MODE SWITCH TABS --- */
 .modeIndicator {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-    transition: opacity 0.2s ease, transform 0.4s ease;
-
+  transition: opacity 0.2s ease, transform 0.4s ease;
 }
 
 .mode-tab {
   background: none;
   border: none;
   color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Cousine';
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -354,4 +247,214 @@ html, body {
   opacity: 0.15;
   font-size: 0.8rem;
   user-select: none;
+}
+
+
+/*MENU MENU MENU MENU*/
+
+/*main card*/
+.menu-window-card {
+  width: 50rem;
+  height: 35rem;
+  background: #1e1b1b; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  font-family: 'Cousine', monospace;
+  
+  transform: scale(0.92);
+  transition: transform 0.4s cubic-bezier(0.24, 1, 0.32, 1);
+}
+
+.options-overlay.menu-active .menu-window-card {
+  transform: scale(1);
+}
+
+/*left navbar */
+.menu-sidebar {
+  width: 160px;
+  background: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar-brand {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  padding-left: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  width: max-content;
+  padding-bottom: 2px;
+}
+
+/*item listing format*/
+.sidebar-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sidebar-nav-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: 'Cousine', monospace;
+  font-size: 0.95rem;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  opacity: 0.4;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  text-transform: lowercase;
+}
+
+.sidebar-nav-btn:hover {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar-nav-btn.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08); 
+}
+
+/*Right side*/
+.menu-content-frame {
+  flex: 1;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-header-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.menu-close-x-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: 'Cousine', monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.menu-close-x-btn:hover {
+  opacity: 1;
+}
+
+.menu-tab-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/*Setting configuration styles*/
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.setting-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.setting-inputs-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Rounded Input field container layouts */
+.input-field-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  width: 75px;
+  transition: border-color 0.2s ease;
+}
+
+.input-field-container:focus-within {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input-field-container input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: 'Cousine', monospace;
+  font-size: 0.9rem;
+  text-align: center;
+  outline: none;
+}
+
+/* Wipes browser scroll wheels out of the numeric card fields */
+.input-field-container input::-webkit-outer-spin-button,
+.input-field-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-field-container input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.input-unit-label {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+  text-transform: lowercase;
+}
+
+.setting-colon {
+  font-weight: bold;
+  padding: 0 0.1rem;
+}
+
+.settings-panel-row-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0.5rem 0;
+}
+
+/* Tab Switching Fluid Fade Reveal Animations */
+.settings-panel-fade-in {
+  animation: panelReveal 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes panelReveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.empty-panel-text {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 3rem;
+  line-height: 1rem;
 }

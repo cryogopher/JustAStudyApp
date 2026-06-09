@@ -5,14 +5,15 @@ import { getCurrentWindow } from "@tauri-apps/api/window"; //import lets changin
 
 function App() {
   //Timer states
-  const [minutes, setMinutes] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(20);
+  const [minutes, setMinutes] = useState<number>(30);
+  const [seconds, setSeconds] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isBreakMode, setIsBreakMode] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<string>("timer"); //for settings tabs
 
   //allow input for minutes, seconds
-  const [config, setConfig] = useState({ focusMin: 45, focusSec: 0, breakMin: 5, breakSec: 0});
+  const [config, setConfig] = useState({ focusMin: 30, focusSec: 0, breakMin: 5, breakSec: 0});
 
   /*Main function that handles countdown, as well as changing the title of window
   (tab) depending on the remaining time left on the timer when active,
@@ -113,12 +114,6 @@ function App() {
   //format numbers to keep digits looking clean (e.g., "05" instead of "5")
   const formatTime = (num: number) => String(num).padStart(2, "0");
 
-  //method for the input blocks in the options menu for changing break/study intervals
-  //make the input for focus/break into a resuable block that uses the same code later
-  const timerInput = () => {
-
-  };
-
   //yay actual html part
   //clean up the options screen heavily after
   return (
@@ -126,69 +121,150 @@ function App() {
 
       {/*options menu overlay first bc it goes before the rest of the site */}
       <div className={`options-overlay ${isMenuOpen ? "menu-active" : ""}`}>
-        <div className="menu-card">
-          <button className="close-btn" onClick={() => setIsMenuOpen(false)}>×</button>
+        <div className="menu-window-card">
           
-          <h3>Options   ฅ^•𖥦•^ฅ </h3>
-          <div className="menu-divider"></div>
-          <div className="settings-content">
-            <div className="setting-row">
-              {/* for the focus settings*/}
-              <label>Study Interval</label>
-              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                <input 
-                  type="number" 
-                  min="0" max="180" placeholder="Min"
-                  value={config.focusMin}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setConfig({ ...config, focusMin: val });
-                    if (!isActive && !isBreakMode) setMinutes(val);
-                  }}
-                />
-                <span style={{ color: "rgba(255,255,255,0.3)" }}>:</span>
-                <input 
-                  type="number" 
-                  min="0" max="59" placeholder="Sec"
-                  value={config.focusSec}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setConfig({ ...config, focusSec: val });
-                    if (!isActive && !isBreakMode) setSeconds(val);
-                  }}
-                />
-              </div>
-            </div>
-        
-
-            {/* for the break settings*/}
-            <div className="setting-row">
-              <label>Break Interval</label>
-              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                <input 
-                  type="number" 
-                  min="0" max="60" placeholder="Min"
-                  value={config.breakMin}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setConfig({ ...config, breakMin: val });
-                    if (!isActive && isBreakMode) setMinutes(val);
-                  }}
-                />
-                <span style={{ color: "rgba(255,255,255,0.3)" }}>:</span>
-                <input 
-                  type="number" 
-                  min="0" max="59" placeholder="Sec"
-                  value={config.breakSec}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setConfig({ ...config, breakSec: val });
-                    if (!isActive && isBreakMode) setSeconds(val);
-                  }}
-                />
-              </div>
+          {/*Left nav bar*/}
+          <div className="menu-sidebar">
+            <div className="sidebar-brand">options ^•𖥦•^</div>
+            <div className="sidebar-menu-list">
+              <button 
+                className={`sidebar-nav-btn ${activeTab === "timer" ? "active" : ""}`}
+                onClick={() => setActiveTab("timer")}
+              >
+                timer
+              </button>
+              <button 
+                className={`sidebar-nav-btn ${activeTab === "themes" ? "active" : ""}`}
+                onClick={() => setActiveTab("themes")}
+              >
+                themes
+              </button>
+              <button 
+                className={`sidebar-nav-btn ${activeTab === "credits" ? "active" : ""}`}
+                onClick={() => setActiveTab("credits")}
+              >
+                credits
+              </button>
             </div>
           </div>
+
+          {/* Right Content Workspace Frame */}
+          <div className="menu-content-frame">
+            <div className="menu-header-row">
+              <button className="menu-close-x-btn" onClick={() => setIsMenuOpen(false)}>x</button>
+            </div>
+            
+            <div className="menu-tab-body">
+              {activeTab === "timer" && (
+                <div className="settings-panel-fade-in">
+                  <div className="setting-row">
+                    {/* for the focus settings*/}
+                    <label className="setting-label">Study Interval</label>
+                    <div className="setting-inputs-wrapper">
+                      <div className="input-field-container">
+                        <input //minutes, max and min caps the scrollable number ammount 
+                          type="number" 
+                          min="0" 
+                          max="180" 
+                          placeholder="Min"
+                          value={config.focusMin}
+                          onChange={(e) => {
+                            //make temporary variable val, and change it
+                            let val = Number(e.target.value);
+                            if (val < 0) val = 0; if (val > 180) val = 180;
+                            //set config
+                            setConfig({ ...config, focusMin: val });
+                            //set the minutes if the conditions are correct
+                            if (!isActive && !isBreakMode) setMinutes(val);
+                          }}
+                        />
+                        <span className="input-unit-label">Min</span>
+                      </div>
+                      <span style={{ color: "rgba(255,255,255,0.3)" }} className="setting-colon">:</span>
+                      <div className="input-field-container">
+                        <input //seconds
+                          type="number" 
+                          min="0" 
+                          max="59" 
+                          placeholder="Sec"
+                          value={config.focusSec}
+                          onChange={(e) => {
+                            let val = Number(e.target.value);
+                            if (val < 0) val = 0; if (val > 59) val = 59;
+                            setConfig({ ...config, focusSec: val });
+                            if (!isActive && !isBreakMode) setSeconds(val);
+                          }}
+                        />
+                        <span className="input-unit-label">Sec</span>
+                      </div>
+                    </div>
+                  </div>
+              
+
+                  <div className="settings-panel-row-divider"></div>
+
+
+                  {/* for the break settings (exactly the same as the study settings)*/}
+                  <div className="setting-row">
+                    <label className="setting-label">Break Interval</label>
+                    <div className="setting-inputs-wrapper">
+                      <div className="input-field-container">
+                        <input 
+                          type="number" 
+                          min="0"
+                          max="60"
+                          placeholder="Min"
+                          value={config.breakMin}
+                          onChange={(e) => {
+                            let val = Number(e.target.value);
+                            if (val < 0) val = 0; if (val > 60) val = 60;
+                            setConfig({ ...config, breakMin: val });
+                            if (!isActive && isBreakMode) setMinutes(val);
+                          }}
+                        />
+                        <span className="input-unit-label">Min</span>
+                      </div>
+                      <span style={{ color: "rgba(255,255,255,0.3)" }} className="setting-colon">:</span>
+                      <div className="input-field-container">
+                        <input 
+                          type="number" 
+                          min="0"
+                          max="59"
+                          placeholder="Sec"
+                          value={config.breakSec}
+                          onChange={(e) => {
+                            let val = Number(e.target.value);
+                            if (val < 0) val = 0; if (val > 59) val = 59;
+                            setConfig({ ...config, breakSec: val });
+                            if (!isActive && isBreakMode) setSeconds(val);
+                          }}
+                        />
+                        <span className="input-unit-label">Sec</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "themes" && (
+                <div className="settings-panel-fade-in empty-panel-text">
+                  Theme settings coming soon...
+                </div>
+              )}
+
+              {activeTab === "credits" && (
+
+                <div className="settings-panel-fade-in empty-panel-text">
+                  {/*change text formatting later lol*/}
+                  Created as a week-long summer project using React and Tauri. UI designed 
+                  on figma. Fully open-source.
+                  
+                  Check out my <a href="https://github.com/cryogopher" target = "_blank"> github: </a>!!
+                </div>
+              )}
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -237,7 +313,8 @@ function App() {
 
       {/*credits text (on left) */}
       <div className={`branding ${isActive ? "faded-out" : ""}`}>
-        JustAStudyApp <span className="author">by Daniel L.</span>
+        JustAStudyApp
+        <span className="author">Daniel L.</span>
       </div>
 
       {/*options button*/}
