@@ -13,11 +13,11 @@ TD:
 - add sound effects, mute/unmute
 - scale ui with window size
 - labels switch to resume/start/pause depending on state
-- better UI
+- ~~better UI~~
 - Uploadable images
 - light/dar mode
-- changing tab window name
+- ~~changing tab window name~~
 - Uploadable, selectable fonts
 
 June. 07
-- 
+- Uploaded Windows Icon, Changed the display title on the tab with timer duration, Updated options UI
