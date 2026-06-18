@@ -74,7 +74,7 @@ html, body {
   /*margin-right: 100px;*/ 
   /* figure out spacing out the buttaons after*/
   gap: 0.5rem;
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Smoothly transitions opacity and positioning over 0.5 seconds */
+  transition: opacity 0.5s ease, transform 0.5s ease; 
   opacity: 1;
 }
 
@@ -139,9 +139,9 @@ html, body {
 
 /*fade out effect code*/
 .faded-out {
-  opacity: 0.05 !important;          /* Drops visibility completely */
-  /*pointer-events: none;  */        /* Disables accidental button clicks while transparent */
-  transform: translateY(5px);   /* Gently floats elements downward as they disappear */
+  opacity: 0.05 !important;         
+  /*pointer-events: none;  */       
+  transform: translateY(5px);  
 }
 
 .timerFadeIn{
@@ -209,7 +209,7 @@ html, body {
 .options-action:hover .options-icon { opacity: 0.85; transform: rotate(35deg); }
 .options-action:active .options-icon { transform: scale(0.9) rotate(35deg); }
 
-/* --- MANUAL MODE SWITCH TABS --- */
+/*tab switching*/
 .modeIndicator {
   display: flex;
   align-items: center;
@@ -390,7 +390,7 @@ html, body {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  padding: 0.35rem 0.6rem;
+  padding: 0.4rem 0.6rem; /*height, length*/
   width: 75px;
   transition: border-color 0.2s ease;
 }
@@ -406,9 +406,10 @@ html, body {
   border: none;
   color: #ffffff;
   font-family: 'Cousine', monospace;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
   outline: none;
+  line-height: 0.9rem; /*stops text from being cropped out at top*/
 }
 
 /* Wipes browser scroll wheels out of the numeric card fields */
@@ -457,4 +458,17 @@ html, body {
   text-align: center;
   margin-top: 3rem;
   line-height: 1rem;
+}
+
+/*clickable link styling*/
+a:link{
+  color:lightblue;
+}
+
+a:visited{
+  color: lightblue;
+}
+
+a:hover {
+  font-weight: bold;
 }
