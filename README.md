@@ -17,6 +17,7 @@ TD:
 - light/dark mode
 - ~~changing tab window name~~
 - Uploadable, selectable fonts
+- Add shortcuts (etc. space to start/stop, enter to exit out of options menu)
 
 June. 07
 - Uploaded Windows Icon, Changed the display title on the tab with timer duration, Updated options UI
