@@ -18,7 +18,7 @@ TD:
 - ~~changing tab window name~~
 - Uploadable, selectable fonts
 - Add shortcuts (etc. space to start/stop, enter to exit out of options menu)
-
+- make app save changes to settings on edit (timer duration etc.)
 June. 07
 - Uploaded Windows Icon, Changed the display title on the tab with timer duration, Updated options UI
 
